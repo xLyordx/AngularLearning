@@ -1,0 +1,10 @@
+.actual {
+    text-decoration: none;
+    border: 1px solid red;
+    background-color: coral;
+    color: white;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}

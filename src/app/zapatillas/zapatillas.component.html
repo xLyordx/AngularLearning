@@ -1,0 +1,40 @@
+<p>
+    Formulario de para agregar Zapatillas</p>
+
+<input type="text" [(ngModel)]='marca' (blur)="onBlur(); " (keyup.enter)="soltarTecla();">
+<button (click)="getMarca();">Obtener Marca</button>
+<button (click)="addMarca();">Agregar Marca</button>
+
+<p>Compra las Zapatillas de las mejoras marcas</p>
+
+<div *ngFor="let marca of marcas; let idx=index " class="etiquetas">
+    {{marca}}
+    <div class="borrarTag" (click)="removeMarca(idx);">x</div>
+</div>
+<br>
+<section *ngFor="let tenis of Zapatillas; let ind=index " class="cuerpo " [class.grey]="!tenis.stock" [ngClass]="{
+        'rose': tenis.precio> 100 && tenis.stock,
+        'green': tenis.precio < 80 && tenis.stock
+    }">
+
+    <h1>{{ind}} - {{tenis.nombre}}</h1>
+    <ul>
+        <li> Marca - {{tenis.marca}}</li>
+        <li> Color - {{tenis.color}}</li>
+        <li> Precio - {{tenis.precio}}</li>
+        <li> Stock - {{tenis.stock}}</li>
+    </ul>
+
+    <div *ngIf="tenis.precio < 80 ">Oferta</div>
+    <div *ngIf="tenis.precio> 100 ">Nuevo</div>
+    <div *ngIf="tenis.precio <= 100 && tenis.precio >= 80">&nbsp;</div>
+
+</section>
+
+<p>El color del día es:</p>
+
+<div [ngSwitch]="color">
+    <div *ngSwitchCase="'yellow'"><span [ngStyle]="{'background-color':color}">Amarillo</span></div>
+    <div *ngSwitchCase="'red'"><span [ngStyle]="{'background-color':color}">Rojo</span></div>
+    <div *ngSwitchCase="'green'"><span [ngStyle]="{'background-color':color}">Verde</span></div>
+</div>

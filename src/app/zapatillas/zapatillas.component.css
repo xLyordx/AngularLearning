@@ -1,0 +1,44 @@
+.cuerpo {
+    background-color: cornflowerblue;
+    border: 1px blue solid;
+    border-radius: 5px;
+    width: 250px;
+    padding: 10px 20px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.cuerpo.rose {
+    background-color: palevioletred;
+    border-color: red;
+}
+
+.cuerpo.green {
+    background-color: lightgreen;
+    border-color: green;
+}
+
+.cuerpo.grey {
+    background-color: lightgrey;
+    border-color: grey;
+}
+
+.etiquetas {
+    background-color: lightsalmon;
+    width: fit-content;
+    box-shadow: 1px 1px black;
+    display: inline-block;
+    margin: 2px;
+    padding: 1px 2px;
+    cursor: grab;
+}
+
+.etiquetas .borrarTag {
+    background-color: rgba(83, 94, 163, 0.5);
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
