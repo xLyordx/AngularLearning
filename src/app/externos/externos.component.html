@@ -1,0 +1,16 @@
+<br>
+<input type="text" [(ngModel)]="userId" (keyup.enter)="cargarUsuario();">
+<button (click)="cargarUsuario();"> Cargar Usuario</button>
+<hr>
+<div>{{fecha | date: 'dd MMM yyyy hh:mm:ss' | uppercase}}</div>
+<hr> 
+<br>
+
+<div *ngIf="!user">
+    Loading...
+</div>
+
+<div *ngIf="user">
+    <img src="{{user.avatar}}" alt="Imagen devuelta por el servicio"/>
+    <h2>{{user.first_name + ' ' + user.last_name}}</h2>
+</div>

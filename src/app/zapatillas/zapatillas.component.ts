@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Zapatilla } from './../Models/Zapatilla';
+import { ZapatillaService } from './../servicios/zapatilla.service';
 
 @Component({
   selector: 'app-zapatillas',
   templateUrl: './zapatillas.component.html',
-  styleUrls: ['./zapatillas.component.css']
+  styleUrls: ['./zapatillas.component.css'],
+  providers: [ZapatillaService]
 })
 export class ZapatillasComponent implements OnInit {
 
@@ -12,24 +14,20 @@ export class ZapatillasComponent implements OnInit {
   public Zapatillas: Array<Zapatilla>;
   public marcas: String[];
   public color: string;
+  public marca: string;
 
-  constructor() {
+  constructor(private _ZapatillaService: ZapatillaService) {
     this.marcas = new Array();
-    this.color = "Amarillo";
-    this.Zapatillas = [
-      new Zapatilla("Reebok", "Reebok", "roja", 200, true),
-      new Zapatilla("Adidas", "Adidas", "verde", 300, false),
-      new Zapatilla("Choopper", "Adidas", "naranja", 100, true),
-      new Zapatilla("Venus", "Pobre pero solicitada", "blanco", 20, true),
-      new Zapatilla("ChocoMilk", "Choclets", "cafe", 50, false),
-      new Zapatilla("ZapatillasAlan", "Alan", "cafe", 80, true)
-    ];
-
+    this.color = "yellow";
+    this.marca = "";
+    this.Zapatillas = [];
   }
 
   ngOnInit(): void {
     console.log(this.Zapatillas);
     this.extraerMarcas();
+    this.Zapatillas = this._ZapatillaService.getZapatillas();
+    console.log(this._ZapatillaService.getDescrition());
   }
 
   extraerMarcas(): void {
@@ -40,5 +38,24 @@ export class ZapatillasComponent implements OnInit {
     console.log(this.marcas);
   }
 
+  removeMarca(_indice: number) {
+    this.marcas.splice(_indice, 1)
+  }
+
+  addMarca() {
+    this.marcas.push(this.marca);
+  }
+
+  getMarca() {
+    alert(this.marca);
+  }
+
+  soltarTecla() {
+    this.addMarca();
+  }
+
+  onBlur() {
+    console.log("me sali de la caja");
+  }
 
 }
