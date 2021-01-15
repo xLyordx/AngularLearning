@@ -20,4 +20,10 @@ export class PeticionesService {
         return "Soy el servicio de peticiones";
     }
 
+    addUser(_user:any): Observable<any>{
+        let params = JSON.stringify(_user);
+        let header = new HttpHeaders().set("Content-Type",'application/json');
+        return this._http.post( this.url + "api/useres",params,{headers:header});
+    }
+
 }

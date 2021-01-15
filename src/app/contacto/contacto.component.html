@@ -1,23 +1,28 @@
 <h2>Conctacto Usuario</h2>
 
-<form #formContacto="ngForm" (ngSubmit)="onSubmit()">
+<form #formContacto="ngForm" (ngSubmit)="onSubmit(formContacto)">
     <label for="nombre">Nombre</label>
     <br>
-    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre" required/>
+    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre"
+     required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,32}$"/>
     <span *ngIf="nombre.touched && !nombre.valid">Debe digitar un nombre de mas de mínimo 3 y maximo 32 letras</span>
     <br>
     <label for="apellido">Apellido</label>
     <br>
-    <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="usuario.apellido" required/>
+    <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="usuario.apellido" 
+    required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,32}$"/>
+    <span *ngIf="apellido.touched && !apellido.valid">Debe digitar un nombre de mas de mínimo 3 y maximo 32 letras</span>
     <br>
     <label for="email">Email</label>
     <br>
-    <input type="text" name="email" #email="ngModel" [(ngModel)]="usuario.email" required/>
+    <input type="email" name="email" #email="ngModel" [(ngModel)]="usuario.email" 
+    required pattern="^((\w)|\.|_|-){3,}@(\w{3,}\.\w{3,})+(\.\w{2,})*$"/>
+    <span *ngIf="email.touched && !email.valid">Debe digitar un correo válido</span>
     <br>
     <label for="mensaje">Mensaje</label>
     <br>
-    <textarea type="text" name="mensaje" #mensaje="ngModel" [(ngModel)]="usuario.mensaje" ></textarea>
+    <textarea type="text" name="mensaje" #mensaje="ngModel" [(ngModel)]="usuario.mensaje" required></textarea>
     <br>
     <br>
-    <input type="submit" value="Enviar">
+    <input type="submit" value="Enviar" [disabled]="!formContacto.form.valid"/>
 </form>

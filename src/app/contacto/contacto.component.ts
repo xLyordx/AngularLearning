@@ -10,15 +10,16 @@ export class ContactoComponent implements OnInit {
 
   public usuario: ContactoUsuario;
 
-  constructor() { 
-    this.usuario = new ContactoUsuario('','','','');    
+  constructor() {
+    this.usuario = new ContactoUsuario('', '', '', '');
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(_form: any) {
     alert('Evento on submit ejecutado');
     console.log(this.usuario);
+    _form.reset();
   }
 }

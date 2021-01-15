@@ -12,19 +12,25 @@ export class ExternosComponent implements OnInit {
   public user: any;
   public userId: any;
   public fecha: Date;
+  public nuevoUser: any;
 
   constructor(
     private _peticiones: PeticionesService
   ) {
     this.userId = 1;
     this.fecha = new Date();
+    this.nuevoUser = {
+      "name": "",
+      "job": ""
+    };
+    console.log(this.nuevoUser);
   }
 
   ngOnInit(): void {
     this.cargarUsuario();
 
     setInterval(() => {
-      this.actualizarFecha(); 
+      this.actualizarFecha();
     }, 1000);
   }
 
@@ -45,5 +51,20 @@ export class ExternosComponent implements OnInit {
   actualizarFecha() {
     this.fecha = new Date();
   }
+
+  onSubmit(_newUser:any){
+    this._peticiones.addUser(this.nuevoUser).subscribe(
+      response => {
+        console.log(response);
+        _newUser.reset();
+      },
+      error => {
+        console.log("fail:")
+        console.log(error);
+      }
+      
+    );
+  }
+
 
 }

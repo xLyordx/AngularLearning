@@ -4,7 +4,7 @@
 <hr>
 <div>{{fecha | date: 'dd MMM yyyy hh:mm:ss' | uppercase}}</div>
 <div>{{88 | calculadora : 2}}</div>
-<hr> 
+<hr>
 <br>
 
 <div *ngIf="!user">
@@ -12,6 +12,26 @@
 </div>
 
 <div *ngIf="user">
-    <img src="{{user.avatar}}" alt="Imagen devuelta por el servicio"/>
+    <img src="{{user.avatar}}" alt="Imagen devuelta por el servicio" />
     <h2>{{user.first_name + ' ' + user.last_name}}</h2>
 </div>
+<hr>
+<h2>Crear usuario</h2>
+
+<form #newUser="ngForm" (ngSubmit)="onSubmit(newUser);">
+    <p>
+        <label for="name">Nombre</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="nuevoUser.name" 
+        required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,32}$" />
+        <span *ngIf="name.touched && !name.valid">El nombre no es válido</span>
+    </p>
+    <p>
+        <label for="job">Trabajo</label>
+        <input type="text" name="job" #job="ngModel" [(ngModel)]="nuevoUser.job" 
+        required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,32}$"/>
+        <span *ngIf="job.touched && !job.valid">El trabajo no es válido</span>
+    </p>
+
+    <input type="submit" value="Guardar Usuario" [disabled]="!newUser.form.valid">
+
+</form>
